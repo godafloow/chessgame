@@ -7,7 +7,7 @@ class chessman:
 #Class Definition For The King Piece
 class king(chessman):
     
-    icon = """chessgame\\icons\\intro_ball.gif"""
+    icon = """icons\\w_king.png"""
     
     def __init__(self,coordinates, onBoard):
         super().__init__(coordinates, onBoard)
@@ -16,6 +16,9 @@ class king(chessman):
     
 #Class Definition For The Queen Piece
 class queen(chessman):
+    
+    icon = "icons\\w_queen.png"
+    
     def __init__(self, coordinates, onBoard):
         super().__init__(coordinates, onBoard)
     
