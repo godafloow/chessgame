@@ -1,32 +1,29 @@
 import sys, pygame
 import screeninfo as sc
+from objects import *
 
 pygame.init()
 
+image = pygame.image.load(king.icon)
+image_rect = image.get_rect()
+
+
 for m in sc.get_monitors():
     if m.is_primary == True:
-        height = m.height/2
-        width = m.width/2
+        height = m.height//1.5
+        width = m.width//1.5
 
 
-speed = [1, 1]
 black = 0, 0, 0
 
 screen = pygame.display.set_mode((width, height))
 
-ball = pygame.image.load("intro_ball.gif")
-ballrect = ball.get_rect()
-
 while True:
+    #Exit Handler
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
 
-    ballrect = ballrect.move(speed)
-    if ballrect.left < 0 or ballrect.right > width:
-        speed[0] = -speed[0]
-    if ballrect.top < 0 or ballrect.bottom > height:
-        speed[1] = -speed[1]
-
+    
     screen.fill(black)
-    screen.blit(ball, ballrect)
+    screen.blit(image, image_rect)
     pygame.display.flip()
