@@ -1,0 +1,2 @@
+pygame.py==2.6.1
+screeninfo.py==0.8.1
