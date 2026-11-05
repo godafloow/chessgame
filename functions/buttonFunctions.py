@@ -1,12 +1,11 @@
-from pygame import Rect
-from pygame.mouse import get_pos, get_pressed
-
 """
 THIS FILE CONTAINS BUTTON RELATED FUNCTIONS
 
 """
 
-
+from functions.gridFunctions import *
+from pygame import Rect
+from pygame.mouse import get_pos, get_pressed
 
 def clickButton(rect: Rect):
     """

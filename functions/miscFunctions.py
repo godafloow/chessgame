@@ -17,6 +17,9 @@ def colorChooser():
     
     
 def getSize():
+    """
+    This function returns the width and height (in a tuple) of the primary monitor.
+    """
     for m in sc.get_monitors():
         if m.is_primary == True:
             if m.height < m.width:

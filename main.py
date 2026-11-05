@@ -19,8 +19,6 @@ brown = 165, 42, 42
 #Default Rect
 rectTest = Rect((0, 0), (width//8, height//8))
 
-index = 0
-counter = 0
 
 #We create the object king
 king = King()
@@ -43,8 +41,8 @@ while True:
         draw.line(screen, "white", ((i+1)*width//8,0), ((i+1)*width//8,height), 5)
         draw.line(screen, "white", (0, (i+1)*width//8), (height, (i+1)*width//8), 5)
     
-    #Testing Grid Positions (Temporary)
-    rectTest = Rect(tuple(gridPositions[index]), (width//8, height//8))
+    print(king.isCliked(rectTest))
+    
     
     #Puts image of the object in the screen
     screen.blit(king.icon, rectTest)
@@ -52,14 +50,6 @@ while True:
     #Renders The Graphics
     pygame.display.flip()
     
-    if counter >= 20:
-        index += 1
-        counter = 0
-        if index == 64:
-            index = 0
-    
 
-    counter += 1
-    
     #Sets FPS to 60
     clock.tick(60)

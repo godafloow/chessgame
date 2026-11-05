@@ -1,21 +1,27 @@
 from pygame import *
 from functions.miscFunctions import *
+from functions.gridFunctions import *
 
 width, height = getSize()[0], getSize()[1]
 
 
 #We define a general class that has a coordinates and a onBoard property
 class Chessman():
-    def __init__(self,rect: Rect, onBoard: bool, isRival: bool):
-        self.coordinates = rect
+    def __init__(self, rect: Rect, onBoard: bool, isRival: bool):
+        if rect != None: self.coordinates = (rect[0], rect[1])
+        else: self.coordinates = rect
         self.onBoard = onBoard
         self.isRival = isRival
         
-        if self.isRival == True:
-            icon = "icons\\b_"
-        else:
-            icon = "icons\\w_"
-
+    def isCliked(self, rect: Rect):
+        """
+        This functions determines if an object is clicked (True) or not (False)
+        """
+        
+        (x, y) = rect[0], rect[1]
+        if (x, y) == detRectCliked(): return True
+        else: return False
+    
 
 
 #Class Definition For The King Piece
