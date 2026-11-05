@@ -1,23 +1,36 @@
+from pygame import *
+from functions.miscFunctions import *
+
+width, height = getSize()[0], getSize()[1]
 
 
 #We define a general class that has a coordinates and a onBoard property
-class chessman():
-    def __init__(self,coordinates: tuple, onBoard: bool):
-        self.coordinates = coordinates
+class Chessman():
+    def __init__(self,rect: Rect, onBoard: bool, isRival: bool):
+        self.coordinates = rect
         self.onBoard = onBoard
+        self.isRival = isRival
+        
+        if self.isRival == True:
+            icon = "icons\\b_"
+        else:
+            icon = "icons\\w_"
+
+
 
 #Class Definition For The King Piece
-class king(chessman):
-    
-    icon = "icons\\w_king.png"
-    
-    def __init__(self,coordinates, onBoard):
-        super().__init__(coordinates, onBoard)
+class King(Chessman):
+    def __init__(self, rect=None, onBoard=None, isRival=None):
+        super().__init__(rect, onBoard, isRival)
+        
+        self.icon = image.load("icons\\w_king.png").convert_alpha()
+        self.icon = transform.scale(self.icon, (width//8,height//8))
+        self.rect = self.icon.get_rect()
         
     
     
 #Class Definition For The Queen Piece
-class queen(chessman):
+class Queen(Chessman):
     
     icon = "icons\\w_queen.png"
     
@@ -27,24 +40,24 @@ class queen(chessman):
 
 
 #Class Definition For The Rook Piece
-class rook(chessman):
+class Rook(Chessman):
     def __init__(self, coordinates, onBoard):
         super().__init__(coordinates, onBoard)
     
 
 #Class Definition For The Bishop Piece
-class bishop(chessman):
+class Bishop(Chessman):
     def __init__(self, coordinates, onBoard):
         super().__init__(coordinates, onBoard)
     
 
 #Class Definition For The Knight Piece
-class knight(chessman):
+class Knight(Chessman):
     def __init__(self, coordinates, onBoard):
         super().__init__(coordinates, onBoard)
     
 #Class Definition For The Pawn Piece
-class pawn(chessman):
+class Pawn(Chessman):
     def __init__(self, coordinates, onBoard):
         super().__init__(coordinates, onBoard)
         
