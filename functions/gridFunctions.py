@@ -22,6 +22,11 @@ for i in range(8):
         gridPositions.append(tuple(((i)*width//8, (t)*height//8)))
     
 def detRectCliked():
+    """
+    Detects What Grid Is Clicked
+    
+    """
+    
     if mouse.get_pressed()[0] != True:
         return None
     

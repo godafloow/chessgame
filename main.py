@@ -5,6 +5,12 @@ from pygame import *
 from functions.movementFunctions import *
 from functions.gridFunctions import *
 
+"""
+TODO: FIX movement() IN objects.py (NEEDS TO WORK LIKE A ONE TIME BUTTON)
+"""
+
+
+
 
 #Initilizazing Pygame, Getting Screen Size, Cretaing a Display With Screen Size and setting up a clock
 pygame.init()
@@ -21,8 +27,7 @@ rectTest = Rect((0, 0), (width//8, height//8))
 
 
 #We create the object king
-king = King()
-
+king = King(rect=rectTest)
 
 while True:
     #Exit Handler
@@ -41,15 +46,12 @@ while True:
         draw.line(screen, "white", ((i+1)*width//8,0), ((i+1)*width//8,height), 5)
         draw.line(screen, "white", (0, (i+1)*width//8), (height, (i+1)*width//8), 5)
     
-    print(king.isCliked(rectTest))
-    
-    
+    print(king.isCliked(king.rect) and (mouse.get_pressed()[0] == True))
     #Puts image of the object in the screen
-    screen.blit(king.icon, rectTest)
+    screen.blit(king.icon, king.rect)
     
     #Renders The Graphics
     pygame.display.flip()
-    
 
     #Sets FPS to 60
     clock.tick(60)

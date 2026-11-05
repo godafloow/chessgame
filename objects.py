@@ -2,14 +2,16 @@ from pygame import *
 from functions.miscFunctions import *
 from functions.gridFunctions import *
 
+
+#Gets The Resolution Of The Main Screen
 width, height = getSize()[0], getSize()[1]
+
 
 
 #We define a general class that has a coordinates and a onBoard property
 class Chessman():
     def __init__(self, rect: Rect, onBoard: bool, isRival: bool):
-        if rect != None: self.coordinates = (rect[0], rect[1])
-        else: self.coordinates = rect
+        self.rect = rect
         self.onBoard = onBoard
         self.isRival = isRival
         
@@ -19,9 +21,17 @@ class Chessman():
         """
         
         (x, y) = rect[0], rect[1]
-        if (x, y) == detRectCliked(): return True
-        else: return False
+        if (x, y) == detRectCliked(): 
+            self.clicked = True
+            return True
+        else: 
+            self.clicked = False
+            return False
     
+    def movement(self):
+        if self.isCliked(self.rect) and (mouse.get_pressed()[0] == True):
+            self.rect = Rect(detRectCliked(), (self.rect[2], self.rect[3]))
+        return None
 
 
 #Class Definition For The King Piece
@@ -31,7 +41,6 @@ class King(Chessman):
         
         self.icon = image.load("icons\\w_king.png").convert_alpha()
         self.icon = transform.scale(self.icon, (width//8,height//8))
-        self.rect = self.icon.get_rect()
         
     
     
