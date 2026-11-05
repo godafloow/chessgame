@@ -1,6 +1,13 @@
 from pygame import Rect
 from pygame.mouse import get_pos, get_pressed
 
+"""
+THIS FILE CONTAINS BUTTON RELATED FUNCTIONS
+
+"""
+
+
+
 def clickButton(rect: Rect):
     """
     You give throw Rect argument and it tells you if the mouse has been clicked in that area

@@ -1,6 +1,13 @@
 from random import randint
 import screeninfo as sc
 
+"""
+THIS FILE CONTAINS FUNCTIONS THAT DO NOT FIT IN ANY OF THE CATEGORIES CREATED
+
+"""
+
+
+
 def colorChooser():
     random_number = randint(0,1)
     if random_number == 1:
@@ -19,4 +26,5 @@ def getSize():
                 height = m.width//1.5
                 width = m.width//1.5
     return (width, height)
-                        
+
+                      
