@@ -1,5 +1,7 @@
+
+
 #We define a general class that has a coordinates and a onBoard property
-class chessman:
+class chessman():
     def __init__(self,coordinates: tuple, onBoard: bool):
         self.coordinates = coordinates
         self.onBoard = onBoard
@@ -7,11 +9,11 @@ class chessman:
 #Class Definition For The King Piece
 class king(chessman):
     
-    icon = """icons\\w_king.png"""
+    icon = "icons\\w_king.png"
     
     def __init__(self,coordinates, onBoard):
         super().__init__(coordinates, onBoard)
-            
+        
     
     
 #Class Definition For The Queen Piece
