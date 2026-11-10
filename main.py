@@ -20,14 +20,16 @@ clock = pygame.time.Clock()
 
 #Color for debugging
 brown = 165, 42, 42
+white = 127, 127, 127
+
 
 
 #Default Rect
-rectTest = Rect((0, 0), (width//8, height//8))
+rectTest = Rect((270, 180), (width//8, height//8))
 
 
 #We create the object king
-king = King(rect=rectTest)
+king = King(rectTest)
 
 while True:
     #Exit Handler
@@ -36,17 +38,21 @@ while True:
     
     #Clicker Test
     if clickButton(king.rect):
-        screen.fill(brown)
+        screen.fill(white)
     else:
         screen.fill(brown)
     
+    king.movement()
+    #print(king.rectConverted, getSurRect(king.rectConverted))
+    #print(detRectCliked())
+
     
+
     #Draws the lines of  the board
     for i in range(7):
         draw.line(screen, "white", ((i+1)*width//8,0), ((i+1)*width//8,height), 5)
         draw.line(screen, "white", (0, (i+1)*width//8), (height, (i+1)*width//8), 5)
     
-    print(king.isCliked(king.rect) and (mouse.get_pressed()[0] == True))
     #Puts image of the object in the screen
     screen.blit(king.icon, king.rect)
     

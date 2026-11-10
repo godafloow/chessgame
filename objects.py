@@ -2,35 +2,42 @@ from pygame import *
 from functions.miscFunctions import *
 from functions.gridFunctions import *
 
-
 #Gets The Resolution Of The Main Screen
 width, height = getSize()[0], getSize()[1]
 
-
-
 #We define a general class that has a coordinates and a onBoard property
 class Chessman():
-    def __init__(self, rect: Rect, onBoard: bool, isRival: bool):
+    def __init__(self, rect: Rect, onBoard: bool, isRival: bool):        
+
+        #self.rect is in a format such as the two axis are two integers numbers from 1 to 8, and cover all posible combinations (simplified format).
         self.rect = rect
+        self.rectConverted = Rect(rect[0]/(width//8)+1, rect[1]/(height//8)+1, rect[2], rect[3]) 
         self.onBoard = onBoard
         self.isRival = isRival
-        
-    def isCliked(self, rect: Rect):
+    
+    def isCliked(self):
         """
         This functions determines if an object is clicked (True) or not (False)
+        
         """
         
-        (x, y) = rect[0], rect[1]
+        (x, y) = self.rectConverted[0], self.rectConverted[1]
+        
         if (x, y) == detRectCliked(): 
             self.clicked = True
             return True
         else: 
             self.clicked = False
             return False
+
     
     def movement(self):
-        if self.isCliked(self.rect) and (mouse.get_pressed()[0] == True):
-            self.rect = Rect(detRectCliked(), (self.rect[2], self.rect[3]))
+        if detRectCliked() == None:
+            return None
+        
+        if (detRectCliked()[0] in getSurRect(self.rectConverted)[0]) and (detRectCliked()[1] in getSurRect(self.rectConverted)[1]):
+            self.rect = Rect(((detRectCliked()[0]-1)*(width//8), (detRectCliked()[1]-1)*(height//8)), (self.rect[2], self.rect[3]))
+            self.rectConverted = Rect((detRectCliked()[0], detRectCliked()[1]), (self.rect[2], self.rect[3]))
         return None
 
 
