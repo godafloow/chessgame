@@ -11,7 +11,7 @@ TODO: FIX movement() IN objects.py (NEEDS TO WORK LIKE A ONE TIME BUTTON)
 
 
 
-
+clickState=False
 #Initilizazing Pygame, Getting Screen Size, Cretaing a Display With Screen Size and setting up a clock
 pygame.init()
 width, height = getSize()[0], getSize()[1]
@@ -23,7 +23,7 @@ brown = 165, 42, 42
 
 
 #Default Rect
-rectTest = Rect((0, 0), (width//8, height//8))
+rectTest = Rect((270, 0), (width//8, height//8))
 
 
 #We create the object king
@@ -34,11 +34,20 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()    
     
+    
+    clickState = king.movement(clickState)
+    
+    
     #Clicker Test
-    if clickButton(king.rect):
+    print(clickState)
+    
+    if clickState:
         screen.fill(brown)
+        for i in clickFeedback(king.rect):
+            draw.rect(screen, colorGradient(), i)
     else:
         screen.fill(brown)
+    
     
     
     #Draws the lines of  the board
@@ -46,12 +55,21 @@ while True:
         draw.line(screen, "white", ((i+1)*width//8,0), ((i+1)*width//8,height), 5)
         draw.line(screen, "white", (0, (i+1)*width//8), (height, (i+1)*width//8), 5)
     
-    print(king.isCliked(king.rect) and (mouse.get_pressed()[0] == True))
+    
+    
+    
+    
+    
+    
+    
     #Puts image of the object in the screen
     screen.blit(king.icon, king.rect)
+    
     
     #Renders The Graphics
     pygame.display.flip()
 
     #Sets FPS to 60
     clock.tick(60)
+    
+    

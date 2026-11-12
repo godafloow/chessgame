@@ -6,6 +6,7 @@ from functions.gridFunctions import *
 #Gets The Resolution Of The Main Screen
 width, height = getSize()[0], getSize()[1]
 
+clickState=False
 
 
 #We define a general class that has a coordinates and a onBoard property
@@ -28,11 +29,16 @@ class Chessman():
             self.clicked = False
             return False
     
-    def movement(self):
-        if self.isCliked(self.rect) and (mouse.get_pressed()[0] == True):
+    def movement(self, clickState):
+        if self.isCliked(self.rect) and (not clickState):
+            clickState = True
+        if (clickState == True) and (mouse.get_pressed()[0] == True):
             self.rect = Rect(detRectCliked(), (self.rect[2], self.rect[3]))
-        return None
 
+        
+        return clickState
+
+        
 
 #Class Definition For The King Piece
 class King(Chessman):
