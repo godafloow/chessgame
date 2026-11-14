@@ -4,8 +4,8 @@ THIS FILE CONTAINS GRID-RELATED FUNCTIONS
 """
 
 from functions.miscFunctions import *
-from pygame import mouse
-
+from pygame import *
+from config import *
 
 #Not A Function But I Have My Code Already Adapted To This And Im Lazy
 gridPositions=[]
@@ -67,3 +67,45 @@ def getSurRect(rect):
 
     return [xAxis, yAxis]
 
+
+currentColor = [100,100,100]
+firstGo = False
+
+def colorGradient():
+
+    """
+    This functions is reponsible for the change of color between two colors
+    
+    """
+
+    global currentColor
+    global firstGo
+
+    
+
+    if not firstGo:
+        for i in range(3): 
+            currentColor[i] += gradientSpeed[i]
+    else:
+        for i in range(3): 
+            currentColor[i] -= gradientSpeed[i]
+
+    if currentColor == secondColorGradient or currentColor == firstColorGradient:
+            firstGo = not firstGo
+
+
+    return currentColor[0], currentColor[1], currentColor[2] 
+
+def clickFeedback(screen: Surface, rect: Rect):
+    global width
+
+    rectPositions=[]
+
+    for i in range(8):
+        rectPositions.append(((i*(width//8), rect[1]),(rect[2], rect[3])))
+        rectPositions.append(((rect[0], (height//8)*i),(rect[2], rect[3])))
+
+    for t in rectPositions:
+        draw.rect(screen, colorGradient(), t)
+
+    

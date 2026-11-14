@@ -31,14 +31,21 @@ class Chessman():
             return False
 
     
-    def movement(self):
+    def movement(self, screen: Surface):
+        """
+        This function controls the movement. If you ask how this works, I dont know.
+        """
+        
         if detRectCliked() == None:
-            return None
+            return False
+
+        #While object is clicked we move it to the rect that is clicked by the mouse, concurrently we change the color of the x and y axis of the object 
         
         if (detRectCliked()[0] in getSurRect(self.rectConverted)[0]) and (detRectCliked()[1] in getSurRect(self.rectConverted)[1]):
             self.rect = Rect(((detRectCliked()[0]-1)*(width//8), (detRectCliked()[1]-1)*(height//8)), (self.rect[2], self.rect[3]))
             self.rectConverted = Rect((detRectCliked()[0], detRectCliked()[1]), (self.rect[2], self.rect[3]))
-        return None
+            clickFeedback(screen, self.rect)
+        return True
 
 
 #Class Definition For The King Piece
